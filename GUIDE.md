@@ -30,6 +30,10 @@ In the file explorer on the left side of the browser window, right-click the
 `cases_in` folder and choose **Upload...**, then pick your `.ifc` file.
 (Dragging the file onto the folder also works.)
 
+**If your file name has spaces in it** (e.g. `My Building.ifc`), either
+rename it first (e.g. `my_building.ifc`) or wrap the path in quotes in the
+next step — otherwise the terminal will read it as two separate arguments.
+
 ### Step 3: Run it
 
 Open a terminal (menu **Terminal → New Terminal**, or `` Ctrl+` ``) and run:
@@ -37,6 +41,8 @@ Open a terminal (menu **Terminal → New Terminal**, or `` Ctrl+` ``) and run:
 ```bash
 ./codespace_run.sh cases_in/your_model.ifc
 ```
+
+(File name has spaces? Quote the path: `./codespace_run.sh "cases_in/My Building.ifc"`)
 
 ### Step 4: Download your results
 
