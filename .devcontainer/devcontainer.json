@@ -1,0 +1,6 @@
+{
+	"name": "BIM2BEM Pipeline (prebuilt image, no local install)",
+	"image": "ghcr.io/mengwang0331/bim2bem-cbip:latest",
+	"entrypoint": "",
+	"postCreateCommand": "mkdir -p cases_in cases_out && chmod +x codespace_run.sh"
+}

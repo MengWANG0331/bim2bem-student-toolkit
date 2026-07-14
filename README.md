@@ -4,11 +4,20 @@ Convert an IFC building model (IFC4) into an EnergyPlus IDF file — no coding,
 no installs beyond Docker. The whole IFC→gbXML→IDF pipeline runs inside a
 prebuilt container; you never see or touch the source code, you just call it.
 
+**New here? Start with [GUIDE.md](GUIDE.md) for a plain step-by-step walkthrough.**
+
 ```
 your_model.ifc  --[this toolkit]-->  model.gbxml + model.idf
 ```
 
-## Requirements
+## No install? Use GitHub Codespaces
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/MengWANG0331/bim2bem-student-toolkit)
+
+Runs entirely in your browser — no Docker install needed, just a free GitHub
+account. See [GUIDE.md](GUIDE.md) Option A for the walkthrough.
+
+## Requirements (for running locally instead)
 
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/), installed and running.
   (Windows/Mac: just install and open it once. No Docker knowledge needed beyond that.)
