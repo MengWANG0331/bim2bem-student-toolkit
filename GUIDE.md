@@ -20,9 +20,11 @@ You need a free GitHub account (github.com) — nothing else.
 Click the button above, or go to the repository page → the green **Code**
 button → **Codespaces** tab → **Create codespace on main**.
 
-The first time, wait 1-2 minutes while it starts — it's downloading the same
-pipeline image as the Docker option, just running it in the cloud instead of
-on your computer.
+The first time, this can take **5-10 minutes** to finish setting up — it's
+downloading the same pipeline image as the Docker option (a few hundred MB),
+just running it in the cloud instead of on your computer. If the progress bar
+or "Setting up remote connection" message seems stuck, that's normal — just
+wait, don't close the tab.
 
 ### Step 2: Add your IFC file
 
