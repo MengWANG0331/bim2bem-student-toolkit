@@ -1,8 +1,9 @@
 # BIM2BEM Student Toolkit
 
-Convert an IFC building model (IFC4) into an EnergyPlus IDF file — no coding,
-no installs beyond Docker. The whole IFC→gbXML→IDF pipeline runs inside a
-prebuilt container; you never see or touch the source code, you just call it.
+Convert an IFC building model (IFC4) into an EnergyPlus IDF file. This repo is
+intended for teaching and student use: each student can fork the repository,
+open it in GitHub Codespaces, upload an IFC file, and run the conversion tools
+without installing Docker locally.
 
 **New here? Start with [GUIDE.md](GUIDE.md) for a plain step-by-step walkthrough.**
 
@@ -10,12 +11,23 @@ prebuilt container; you never see or touch the source code, you just call it.
 your_model.ifc  --[this toolkit]-->  model.gbxml + model.idf
 ```
 
-## No install? Use GitHub Codespaces
+## For students: use GitHub Codespaces
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/MengWANG0331/bim2bem-student-toolkit)
 
-Runs entirely in your browser — no Docker install needed, just a free GitHub
-account. See [GUIDE.md](GUIDE.md) Option A for the walkthrough.
+Recommended workflow for students:
+1. Fork this repository to your own GitHub account.
+2. Open the fork in GitHub Codespaces.
+3. Upload an IFC file into [cases_in](cases_in), or use the built-in sample model.
+4. Run the launcher script from the terminal.
+
+The simplest start is:
+```bash
+./codespace_run.sh
+```
+
+This approach runs entirely in the browser and avoids local Docker setup.
+See [GUIDE.md](GUIDE.md) for the exact steps.
 
 ## Requirements (for running locally instead)
 

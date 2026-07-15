@@ -2,10 +2,11 @@
 
 Turn your IFC building model into an EnergyPlus IDF file. No coding required.
 
-There are two ways to run this:
+This repository is designed so that each student can use it from their own
+GitHub account:
 
-- **Option A: GitHub Codespaces (recommended)** — nothing to install, runs in
-  your browser. Use this if installing Docker Desktop is giving you trouble.
+- **Option A: GitHub Codespaces (recommended for students)** — nothing to install,
+  runs in your browser.
 - **Option B: Docker Desktop** — runs on your own computer, useful if you'll
   process many files and want to work offline.
 
@@ -17,8 +18,9 @@ You need a free GitHub account (github.com) — nothing else.
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/MengWANG0331/bim2bem-student-toolkit)
 
-Click the button above, or go to the repository page → the green **Code**
-button → **Codespaces** tab → **Create codespace on main**.
+If you are a student, first fork this repository to your own GitHub account.
+Then open your fork in Codespaces from the green **Code** button →
+**Codespaces** tab → **Create codespace on main**.
 
 The first time, this can take **5-10 minutes** to finish setting up — it's
 downloading the same pipeline image as the Docker option (a few hundred MB),
@@ -39,6 +41,14 @@ next step — otherwise the terminal will read it as two separate arguments.
 ### Step 3: Run it
 
 Open a terminal (menu **Terminal → New Terminal**, or `` Ctrl+` ``) and run:
+
+```bash
+./codespace_run.sh
+```
+
+This uses the sample IFC file included in [cases_in](cases_in).
+
+To process your own IFC file, run:
 
 ```bash
 ./codespace_run.sh cases_in/your_model.ifc
