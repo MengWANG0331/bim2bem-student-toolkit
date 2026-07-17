@@ -17,7 +17,7 @@ if [ ! -f "$1" ]; then
 fi
 
 HERE="$(cd "$(dirname "$0")" && pwd)"
-OUT_DIR="$HERE/cases_out_bim2graph"
+OUT_DIR="$HERE/cases_out"
 mkdir -p "$OUT_DIR"
 
 python3 "$HERE/bim2graph/run_pipeline.py" "$1" -o "$OUT_DIR"

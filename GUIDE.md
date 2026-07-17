@@ -3,15 +3,16 @@
 This toolkit has **two independent routes** — pick the one that matches what
 you need (see [README.md](README.md) for the overview table):
 
-- **Route 1: BIM2BEM-GEOMETRY** — IFC → gbXML → EnergyPlus IDF (zone
-  geometry, walls, windows). Docker-based.
-- **Route 2: BIM2BEM-HVAC (BIM2Graph)** — IFC → knowledge graph → HVAC
-  system topology. Plain Python, no Docker.
+- **Route 1: BIM2BEM-GEOMETRY** (folder: [`bim2bem-geometry/`](bim2bem-geometry/)) —
+  IFC → gbXML → EnergyPlus IDF (zone geometry, walls, windows). Docker-based.
+- **Route 2: BIM2BEM-HVAC** (folder: [`bim2bem-hvac/`](bim2bem-hvac/), BIM2Graph) —
+  IFC → knowledge graph → HVAC system topology. Plain Python, no Docker.
 
-Each route has its own local option and its own GitHub Codespaces option.
-This repository is designed so each student can use it from their own GitHub
-account — for Codespaces, fork the repository first, then open your fork
-in Codespaces (see each route's Option A below).
+Each route has its own local option, its own GitHub Codespaces option, and
+its own `cases_in/`/`cases_out/` subfolders. This repository is designed so
+each student can use it from their own GitHub account — for Codespaces, fork
+the repository first, then open your fork in Codespaces (see each route's
+Option A below).
 
 ---
 
@@ -37,9 +38,10 @@ wait, don't close the tab.
 
 **Step 2: Add your IFC file**
 
-In the file explorer on the left side of the browser window, right-click the
-`cases_in` folder and choose **Upload...**, then pick your `.ifc` file.
-(Dragging the file onto the folder also works.)
+In the file explorer on the left side of the browser window, open the
+`bim2bem-geometry` folder, right-click the `cases_in` folder inside it and
+choose **Upload...**, then pick your `.ifc` file. (Dragging the file onto
+the folder also works.)
 
 **If your file name has spaces in it** (e.g. `My Building.ifc`), either
 rename it first (e.g. `my_building.ifc`) or wrap the path in quotes in the
@@ -50,10 +52,11 @@ next step — otherwise the terminal will read it as two separate arguments.
 Open a terminal (menu **Terminal → New Terminal**, or `` Ctrl+` ``) and run:
 
 ```bash
+cd bim2bem-geometry
 ./codespace_run.sh
 ```
 
-This uses the sample IFC file included in [cases_in](cases_in).
+This uses the sample IFC file included in `cases_in`.
 
 To process your own IFC file, run:
 
@@ -65,8 +68,8 @@ To process your own IFC file, run:
 
 **Step 4: Download your results**
 
-In the file explorer, open the `cases_out` folder, right-click each file, and
-choose **Download**.
+In the file explorer, open `bim2bem-geometry/cases_out`, right-click each
+file, and choose **Download**.
 
 **When you're done**
 
@@ -94,12 +97,14 @@ Download or clone this repository to your computer.
 
 **Step 3: Run it on your IFC file**
 
-Windows: drag your `.ifc` file and drop it directly onto `run.bat`. A black
-terminal window will open and show progress. (Alternative:
-`run.bat path\to\your_model.ifc` from a terminal.)
+Windows: drag your `.ifc` file and drop it directly onto
+`bim2bem-geometry\run.bat`. A black terminal window will open and show
+progress. (Alternative: `bim2bem-geometry\run.bat path\to\your_model.ifc`
+from a terminal.)
 
 Mac / Linux:
 ```bash
+cd bim2bem-geometry
 chmod +x run.sh          # first time only
 ./run.sh path/to/your_model.ifc
 ```
@@ -110,7 +115,7 @@ the image is cached on your computer.
 
 ### What you get
 
-Look in `cases_out/` for:
+Look in `bim2bem-geometry/cases_out/` for:
 
 | File | What it is |
 |---|---|
@@ -145,17 +150,19 @@ Python, no large image to download) — usually under a minute.
 
 **Step 2: Add your IFC file**
 
-Same as Route 1 — right-click `cases_in` in the file explorer → **Upload...**.
+In the file explorer, open the `bim2bem-hvac` folder, right-click the
+`cases_in` folder inside it → **Upload...**.
 
 **Step 3: Run it**
 
 ```bash
+cd bim2bem-hvac
 ./codespace_run_bim2graph.sh cases_in/your_model.ifc
 ```
 
 **Step 4: Download your results**
 
-Open the `cases_out_bim2graph` folder, right-click each file, **Download**.
+Open `bim2bem-hvac/cases_out`, right-click each file, **Download**.
 
 ### Option B: Run locally (Python, no Docker)
 
@@ -170,10 +177,11 @@ Download or clone this repository to your computer.
 
 **Step 3: Run it on your IFC file**
 
-Windows: drag your `.ifc` file onto `run_bim2graph.bat`.
+Windows: drag your `.ifc` file onto `bim2bem-hvac\run_bim2graph.bat`.
 
 Mac / Linux:
 ```bash
+cd bim2bem-hvac
 chmod +x run_bim2graph.sh   # first time only
 ./run_bim2graph.sh path/to/your_model.ifc
 ```
@@ -183,16 +191,16 @@ later runs reuse it and are fast.
 
 ### What you get
 
-Look in `cases_out_bim2graph/` (see README.md's Route 2 section for the full
-file list and what each one means) — the most useful starting points are
-`_source_trace.csv` (which source feeds each terminal) and
+Look in `bim2bem-hvac/cases_out/` (see README.md's Route 2 section for the
+full file list and what each one means) — the most useful starting points
+are `_source_trace.csv` (which source feeds each terminal) and
 `_terminal_source_topology.ttl` (a simplified source→terminal graph with
 readable names instead of GUIDs).
 
-Because the source code is plain, visible Python (`bim2graph/` in this
-repo), you can also read exactly what each stage does, or run individual
-stages yourself instead of the full chain — see the comments at the top of
-each script in `bim2graph/`.
+Because the source code is plain, visible Python
+(`bim2bem-hvac/bim2graph/` in this repo), you can also read exactly what
+each stage does, or run individual stages yourself instead of the full
+chain — see the comments at the top of each script.
 
 ---
 
@@ -203,7 +211,7 @@ each script in `bim2graph/`.
 | `Docker was not found` | Geometry | Docker Desktop isn't installed, or isn't on your PATH. Reinstall it, or switch to Codespaces. |
 | `Docker pull failed` | Geometry | Docker Desktop isn't open/running, or you have no internet connection. |
 | `Python was not found` | HVAC | Install Python 3.11+ and make sure it's on your PATH (Windows: re-run the installer and check "Add to PATH"). |
-| `File not found` in Codespaces | Both | Double-check you uploaded the `.ifc` file into `cases_in/` first, and that the path after the run command matches its exact name. |
+| `File not found` in Codespaces | Both | Double-check you `cd`'d into the right route folder, uploaded the `.ifc` file into `cases_in/` first, and that the path after the run command matches its exact name. |
 | Pipeline runs but errors partway through | Both | Copy the full text printed in the terminal and share it when asking for help — it tells us exactly which stage failed. |
 
 ## Good to know before you rely on the results

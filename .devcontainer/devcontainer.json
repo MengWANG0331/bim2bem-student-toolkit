@@ -19,5 +19,5 @@
       ]
     }
   },
-  "postCreateCommand": "mkdir -p cases_in cases_out && chmod +x codespace_run.sh && printf '\nCodespace ready. Upload an IFC file into cases_in/ and run ./codespace_run.sh cases_in/your_model.ifc\n'"
+  "postCreateCommand": "mkdir -p bim2bem-geometry/cases_in bim2bem-geometry/cases_out && chmod +x bim2bem-geometry/codespace_run.sh && printf '\nCodespace ready. cd bim2bem-geometry, upload an IFC file into cases_in/, then run ./codespace_run.sh cases_in/your_model.ifc\n'"
 }

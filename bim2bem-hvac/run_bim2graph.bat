@@ -41,7 +41,7 @@ if not exist "%VENV%\Scripts\python.exe" (
     )
 )
 
-set "OUT_DIR=%HERE%cases_out_bim2graph"
+set "OUT_DIR=%HERE%cases_out"
 if not exist "%OUT_DIR%" mkdir "%OUT_DIR%"
 
 echo == Running BIM2Graph on %~nx1 ==

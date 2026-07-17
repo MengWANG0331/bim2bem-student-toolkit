@@ -6,20 +6,22 @@ is intended for teaching and student use: each student can fork the
 repository, open it in GitHub Codespaces, upload an IFC file, and run the
 conversion tools without installing anything locally.
 
-This toolkit has **two independent routes**, covering two different parts of
-a BIM2BEM workflow. Pick whichever matches what you need — they don't depend
-on each other.
+This toolkit has **two independent routes**, each in its own top-level
+folder with its own `cases_in/`/`cases_out/` subfolders. Pick whichever
+matches what you need — they don't depend on each other.
 
-| Route | Input | Output | Covers |
-|---|---|---|---|
-| **BIM2BEM-GEOMETRY** | `.ifc` | `.gbxml` + `.idf` | Zone/space geometry, walls, floors, windows |
-| **BIM2BEM-HVAC** | `.ifc` | knowledge graph (`.ttl`) + review `.csv`s | HVAC equipment, ductwork/piping connectivity, terminal-to-source tracing |
+| Route | Folder | Input | Output | Covers |
+|---|---|---|---|---|
+| **BIM2BEM-GEOMETRY** | [`bim2bem-geometry/`](bim2bem-geometry/) | `.ifc` | `.gbxml` + `.idf` | Zone/space geometry, walls, floors, windows |
+| **BIM2BEM-HVAC** | [`bim2bem-hvac/`](bim2bem-hvac/) | `.ifc` | knowledge graph (`.ttl`) + review `.csv`s | HVAC equipment, ductwork/piping connectivity, terminal-to-source tracing |
 
 **New here? Start with [GUIDE.md](GUIDE.md) for a plain step-by-step walkthrough of both routes.**
 
 ---
 
 ## Route 1: BIM2BEM-GEOMETRY
+
+Everything for this route lives in [`bim2bem-geometry/`](bim2bem-geometry/).
 
 ```
 your_model.ifc  --[this toolkit]-->  model.gbxml + model.idf
@@ -36,9 +38,10 @@ single prebuilt Docker image — you never see or touch the source.
 Recommended workflow for students:
 1. Fork this repository to your own GitHub account.
 2. Open the fork in GitHub Codespaces.
-3. Upload an IFC file into [cases_in](cases_in), or use the built-in sample model.
-4. Run the launcher script from the terminal (`./codespace_run.sh` uses the
-   sample; `./codespace_run.sh cases_in/your_model.ifc` uses your own file).
+3. In the terminal, `cd bim2bem-geometry`.
+4. Upload an IFC file into [`bim2bem-geometry/cases_in`](bim2bem-geometry/cases_in), or use the built-in sample model.
+5. Run the launcher script (`./codespace_run.sh` uses the sample;
+   `./codespace_run.sh cases_in/your_model.ifc` uses your own file).
 
 This approach runs entirely in the browser and avoids local Docker setup.
 See [GUIDE.md](GUIDE.md) for the exact steps.
@@ -48,11 +51,12 @@ See [GUIDE.md](GUIDE.md) for the exact steps.
 Requires [Docker Desktop](https://www.docker.com/products/docker-desktop/),
 installed and running.
 
-**Windows**: drag your `.ifc` file onto [`run.bat`](run.bat) (or run
-`run.bat path\to\model.ifc` from a terminal).
+**Windows**: drag your `.ifc` file onto [`bim2bem-geometry/run.bat`](bim2bem-geometry/run.bat)
+(or run `bim2bem-geometry\run.bat path\to\model.ifc` from a terminal).
 
 **Mac / Linux**:
 ```bash
+cd bim2bem-geometry
 chmod +x run.sh   # first time only
 ./run.sh path/to/model.ifc
 ```
@@ -61,7 +65,7 @@ The first run downloads the pipeline image (a few hundred MB); after that it's c
 
 ### Output
 
-Results land in `cases_out/`:
+Results land in `bim2bem-geometry/cases_out/`:
 - `<name>.gbxml` — intermediate gbXML 7.03 geometry
 - `<name>.idf` — EnergyPlus input file, ready to open in OpenStudio/EnergyPlus
 - `timing.json` — how long each of the 3 pipeline stages took
@@ -73,9 +77,9 @@ Results land in `cases_out/`:
    surfaces are exterior vs. interior/shared-between-spaces, then exports gbXML.
 3. **gbXML → IDF** — converted to an EnergyPlus IDF via the OpenStudio SDK.
 
-`docker/Dockerfile` and `docker/entrypoint.sh` are included so you can see exactly what the
-container runs — but the Dockerfile is not buildable from this repo alone (the CBIP and Java
-exporter source live in separate, unpublished repos). You always pull the prebuilt image.
+`bim2bem-geometry/docker/Dockerfile` and `entrypoint.sh` are included so you can see exactly
+what the container runs — but the Dockerfile is not buildable from this repo alone (the CBIP
+and Java exporter source live in separate, unpublished repos). You always pull the prebuilt image.
 
 ### Known limitations
 
@@ -91,6 +95,8 @@ exporter source live in separate, unpublished repos). You always pull the prebui
 
 ## Route 2: BIM2BEM-HVAC (BIM2Graph)
 
+Everything for this route lives in [`bim2bem-hvac/`](bim2bem-hvac/).
+
 ```
 your_model.ifc  --[this toolkit]-->  knowledge graph (.ttl) + review .csv files
 ```
@@ -99,7 +105,7 @@ Runs IFC → a [Brick](https://brickschema.org/) + [FSO](https://w3id.org/fso)
 knowledge graph → a simplified, human-readable HVAC topology (which
 radiators/diffusers/terminals are fed by which boilers/chillers, duct and
 pipe runs collapsed away). Plain Python, **source code included** in
-[`bim2graph/`](bim2graph/) — nothing hidden, nothing compiled.
+[`bim2bem-hvac/bim2graph/`](bim2bem-hvac/bim2graph/) — nothing hidden, nothing compiled.
 
 **Scope, read this before you start:** this route currently stops at the
 knowledge graph + topology views. It does **not** yet populate an
@@ -113,17 +119,19 @@ simulation-ready file.
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/MengWANG0331/bim2bem-student-toolkit?devcontainer_path=.devcontainer/bim2graph/devcontainer.json)
 
 When creating the codespace, if you're not sent straight to this route, pick
-the **bim2graph** dev container configuration from the dropdown.
+the **bim2graph** dev container configuration from the dropdown. Once it's
+ready, `cd bim2bem-hvac` in the terminal before running anything.
 
 ### Run locally instead
 
 Requires [Python 3.11+](https://www.python.org/downloads/) — no Docker needed for this route.
 
-**Windows**: drag your `.ifc` file onto [`run_bim2graph.bat`](run_bim2graph.bat) (or run
-`run_bim2graph.bat path\to\model.ifc` from a terminal).
+**Windows**: drag your `.ifc` file onto [`bim2bem-hvac/run_bim2graph.bat`](bim2bem-hvac/run_bim2graph.bat)
+(or run `bim2bem-hvac\run_bim2graph.bat path\to\model.ifc` from a terminal).
 
 **Mac / Linux**:
 ```bash
+cd bim2bem-hvac
 chmod +x run_bim2graph.sh   # first time only
 ./run_bim2graph.sh path/to/model.ifc
 ```
@@ -133,7 +141,7 @@ couple of minutes); later runs reuse it.
 
 ### Output
 
-Results land in `cases_out_bim2graph/`, all prefixed with your model's name:
+Results land in `bim2bem-hvac/cases_out/`, all prefixed with your model's name:
 - `_kg.ttl` — the raw knowledge graph (every IFC element classified into Brick/BOT/FSO)
 - `_bridged.ttl` / `_merged.ttl` — intermediate graphs
 - `_source_trace.csv` — which heat/cold source feeds each terminal (radiator, FCU, VAV, ...)
@@ -167,7 +175,7 @@ Results land in `cases_out_bim2graph/`, all prefixed with your model's name:
 | `Docker was not found` | Geometry | Docker Desktop isn't installed, or isn't on your PATH. Reinstall it, or switch to Codespaces. |
 | `Docker pull failed` | Geometry | Docker Desktop isn't open/running, or no internet connection. |
 | `Python was not found` | HVAC | Install Python 3.11+ and make sure it's on your PATH. |
-| `File not found` | Both | Double-check the path/filename you passed matches your uploaded `.ifc` exactly. |
+| `File not found` | Both | Double-check the path/filename you passed matches your uploaded `.ifc` exactly, and that you `cd`'d into the right route folder first. |
 | Pipeline runs but errors partway through | Both | Copy the full text printed in the terminal and share it when asking for help — it tells us exactly which stage failed. |
 
 If you hit an issue not covered here, open an issue on this repository with your terminal output attached.

@@ -36,7 +36,7 @@ if [ ! -x "$VENV/bin/python" ]; then
     "$VENV/bin/python" -m pip install -r "$HERE/bim2graph/requirements.txt"
 fi
 
-OUT_DIR="$HERE/cases_out_bim2graph"
+OUT_DIR="$HERE/cases_out"
 mkdir -p "$OUT_DIR"
 
 echo "== Running BIM2Graph on $(basename "$1") =="

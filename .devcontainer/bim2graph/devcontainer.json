@@ -1,5 +1,5 @@
 {
 	"name": "BIM2BEM HVAC route (BIM2Graph - plain Python, source included)",
 	"image": "mcr.microsoft.com/devcontainers/python:3.11",
-	"postCreateCommand": "pip install -r bim2graph/requirements.txt && mkdir -p cases_in cases_out_bim2graph && chmod +x codespace_run_bim2graph.sh"
+	"postCreateCommand": "pip install -r bim2bem-hvac/bim2graph/requirements.txt && mkdir -p bim2bem-hvac/cases_in bim2bem-hvac/cases_out && chmod +x bim2bem-hvac/codespace_run_bim2graph.sh && printf '\nCodespace ready. cd bim2bem-hvac, upload an IFC file into cases_in/, then run ./codespace_run_bim2graph.sh cases_in/your_model.ifc\n'"
 }
