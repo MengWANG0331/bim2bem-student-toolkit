@@ -1,11 +1,23 @@
 {
-	"name": "BIM2BEM Pipeline (prebuilt image, no local install)",
-	"image": "ghcr.io/mengwang0331/bim2bem-cbip:latest",
-	"entrypoint": "",
-	"features": {
-		"ghcr.io/devcontainers/features/sshd:1": {
-			"version": "latest"
-		}
-	},
-	"postCreateCommand": "mkdir -p cases_in cases_out && chmod +x codespace_run.sh"
+  "name": "BIM2BEM Student Toolkit",
+  "image": "ghcr.io/mengwang0331/bim2bem-cbip:latest",
+  "entrypoint": "",
+  "hostRequirements": {
+    "cpus": 2,
+    "memory": "4gb",
+    "storage": "32gb"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/sshd:1": {
+      "version": "latest"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools"
+      ]
+    }
+  },
+  "postCreateCommand": "mkdir -p cases_in cases_out && chmod +x codespace_run.sh && printf '\nCodespace ready. Upload an IFC file into cases_in/ and run ./codespace_run.sh cases_in/your_model.ifc\n'"
 }

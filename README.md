@@ -1,7 +1,10 @@
 # BIM2BEM Student Toolkit
 
 Turn an IFC building model (IFC4) into useful BEM (Building Energy Model)
-data — no coding, no source-code reading required to just *use* it.
+data — no coding, no source-code reading required to just *use* it. This repo
+is intended for teaching and student use: each student can fork the
+repository, open it in GitHub Codespaces, upload an IFC file, and run the
+conversion tools without installing anything locally.
 
 This toolkit has **two independent routes**, covering two different parts of
 a BIM2BEM workflow. Pick whichever matches what you need — they don't depend
@@ -26,12 +29,19 @@ Runs the full IFC → cbip.xsd XML → gbXML → IDF chain (Java geometry
 exporter + C++/CGAL space-boundary engine + OpenStudio SDK), packaged as a
 single prebuilt Docker image — you never see or touch the source.
 
-### No install? Use GitHub Codespaces
+### For students: use GitHub Codespaces
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/MengWANG0331/bim2bem-student-toolkit)
 
-Runs entirely in your browser — no Docker install needed, just a free GitHub
-account. See [GUIDE.md](GUIDE.md) for the walkthrough.
+Recommended workflow for students:
+1. Fork this repository to your own GitHub account.
+2. Open the fork in GitHub Codespaces.
+3. Upload an IFC file into [cases_in](cases_in), or use the built-in sample model.
+4. Run the launcher script from the terminal (`./codespace_run.sh` uses the
+   sample; `./codespace_run.sh cases_in/your_model.ifc` uses your own file).
+
+This approach runs entirely in the browser and avoids local Docker setup.
+See [GUIDE.md](GUIDE.md) for the exact steps.
 
 ### Run locally instead
 

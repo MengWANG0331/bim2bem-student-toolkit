@@ -9,6 +9,9 @@ you need (see [README.md](README.md) for the overview table):
   system topology. Plain Python, no Docker.
 
 Each route has its own local option and its own GitHub Codespaces option.
+This repository is designed so each student can use it from their own GitHub
+account — for Codespaces, fork the repository first, then open your fork
+in Codespaces (see each route's Option A below).
 
 ---
 
@@ -22,8 +25,9 @@ You need a free GitHub account (github.com) — nothing else.
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/MengWANG0331/bim2bem-student-toolkit)
 
-Click the button above, or go to the repository page → the green **Code**
-button → **Codespaces** tab → **Create codespace on main**.
+If you are a student, first fork this repository to your own GitHub account.
+Then open your fork in Codespaces from the green **Code** button →
+**Codespaces** tab → **Create codespace on main**.
 
 The first time, this can take **5-10 minutes** to finish setting up — it's
 downloading the same pipeline image as the Docker option (a few hundred MB),
@@ -44,6 +48,14 @@ next step — otherwise the terminal will read it as two separate arguments.
 **Step 3: Run it**
 
 Open a terminal (menu **Terminal → New Terminal**, or `` Ctrl+` ``) and run:
+
+```bash
+./codespace_run.sh
+```
+
+This uses the sample IFC file included in [cases_in](cases_in).
+
+To process your own IFC file, run:
 
 ```bash
 ./codespace_run.sh cases_in/your_model.ifc
