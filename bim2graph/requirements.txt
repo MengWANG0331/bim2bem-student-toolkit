@@ -1,0 +1,9 @@
+ifcopenshell
+rdflib
+pandas
+brickschema
+lxml
+openpyxl
+xlrd
+numpy
+prettytable

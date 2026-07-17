@@ -1,0 +1,5 @@
+{
+	"name": "BIM2BEM HVAC route (BIM2Graph - plain Python, source included)",
+	"image": "mcr.microsoft.com/devcontainers/python:3.11",
+	"postCreateCommand": "pip install -r bim2graph/requirements.txt && mkdir -p cases_in cases_out_bim2graph && chmod +x codespace_run_bim2graph.sh"
+}

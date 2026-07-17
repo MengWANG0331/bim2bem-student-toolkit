@@ -2,3 +2,8 @@ cases_in/*
 !cases_in/.gitkeep
 cases_out/*
 !cases_out/.gitkeep
+cases_out_bim2graph/*
+!cases_out_bim2graph/.gitkeep
+bim2graph/.venv/
+__pycache__/
+*.pyc
